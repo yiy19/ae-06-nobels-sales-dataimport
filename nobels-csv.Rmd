@@ -1,6 +1,6 @@
 ---
 title: "Nobel winners"
-author: "YOU"
+author: "Ye Dam Yi"
 date: "`r Sys.Date()`"
 output: 
   html_document: 
@@ -15,7 +15,8 @@ library(tidyverse)
 Let's first load the data:
 
 ```{r label-me1, eval=FALSE}
-nobel <- ___(___)
+nobel <- read_csv(file = "data-raw/nobel.csv")
+nobel
 ```
 
 Then let's split the data into two:
