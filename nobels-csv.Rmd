@@ -23,12 +23,15 @@ Then let's split the data into two:
 
 ```{r label-me2, eval=FALSE}
 # stem laureates
-___ <- nobel %>%
-  filter(___)
+nobel_stem <- nobel %>%                                                       # create a dataset called nobel_stem
+  filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics"))    # filters for the STEM fields
 
 # non-steam laureates
-___ <- nobel %>%
-  filter(___)
+nobel_nonstem <- nobel %>%
+  filter(!category %in% c("Physics", "Medicine", "Chemistry", "Economics"))   # filters out the STEM fields (=filters for the remaining fields)
+
+glimpse(nobel_stem)
+glimpse(nobel_nonstem)
 ```
 
 And finally write out the data:
