@@ -14,14 +14,13 @@ library(tidyverse)
 
 Let's first load the data:
 
-```{r label-me1, eval=FALSE}
+```{r read-in-csv}
 nobel <- read_csv(file = "data-raw/nobel.csv")
-nobel
 ```
 
 Then let's split the data into two:
 
-```{r label-me2, eval=FALSE}
+```{r create-datasets}
 # stem laureates
 nobel_stem <- nobel %>%                                                       # create a dataset called nobel_stem
   filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics"))    # filters for the STEM fields
@@ -32,12 +31,15 @@ nobel_nonstem <- nobel %>%
 
 glimpse(nobel_stem)
 glimpse(nobel_nonstem)
+
 ```
 
 And finally write out the data:
 
-```{r label-me3}
-# add code for writing out the two data frames here
+```{r write-out-datasets}
+write_csv(nobel_stem, file = "data-raw/nobel_stem.csv")
+write_csv(nobel_nonstem, file = "data-raw/nobel_nonstem.csv")
+
 ```
 
 ## References {#references}
