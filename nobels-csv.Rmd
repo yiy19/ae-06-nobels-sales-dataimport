@@ -37,8 +37,8 @@ glimpse(nobel_nonstem)
 And finally write out the data:
 
 ```{r write-out-datasets}
-write_csv(nobel_stem, file = "data-raw/nobel_stem.csv")
-write_csv(nobel_nonstem, file = "data-raw/nobel_nonstem.csv")
+write_csv(nobel_stem, file = "data/nobel_stem.csv")
+write_csv(nobel_nonstem, file = "data/nobel_nonstem.csv")
 
 ```
 
