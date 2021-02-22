@@ -1,6 +1,6 @@
 ---
 title: "Favourite foods"
-author: "YOU"
+author: "Ye Dam Yi"
 date: "`r Sys.Date()`"
 output: 
   html_document: 
@@ -17,36 +17,49 @@ library(readxl)
 
 * Read in the Excel file called `favourite-food.xlsx` from the `data-raw/` folder.
 
-```{r label-me1, eval=FALSE}
-fav_food <- read_excel(___)
+```{r read-exce}
+fav_food <- read_excel("data-raw/favourite-food.xlsx")
 fav_food
 ```
 
 * Clean up `NA`s and make sure you're happy with variable types.
 
-```{r label-me2, eval=FALSE}
-fav_food <- read_excel(___, ___)
+```{r remove-na}
+fav_food <- read_excel("data-raw/favourite-food.xlsx", na = c("N/A", "99999","five"))
 fav_food 
 ```
 
 * Convert SES (socio economic status) to a factor variables with levels in the 
 following order: `Low`, `Middle`, `High`.
 
-```{r label-me3}
-# add code here
+```{r as.factor}
+fav_food$SES <- as.factor(fav_food$SES)
+class(fav_food$SES)
+
+fav_food <- fav_food %>% 
+  mutate(SES = fct_relevel(SES, c("Low", "Middle", "High"
+    
+  )))
+
+levels(fav_food$SES)
+fav_food
+
 ```
 
 * Write out the resulting data frame to `favourite-food.csv` in the `data/` folder.
 
-```{r label-me4}
-# add code here
+```{r write-file}
+write_csv(fav_food, "data/favorite-food.csv")
 ```
 
 * Finally, read `favourite-food.csv` back in from the `data/` folder and 
-observe the variable types. Are they as you left them?
+observe the variable types. Are they as you left them? 
 
-```{r label-me5}
-# add code here
+No.  
+
+```{r reload-file}
+fav_food <- read_csv("data/favorite-food.csv")
+fav_food
 ```
 
 ## Exercise 2
