@@ -67,29 +67,39 @@ fav_food
 * Read in the Excel file called `favourite-food.xlsx` from the `data-raw/` folder, 
 taking care of `NA`s and variable types.
 
-```{r label-me6, eval=FALSE}
-fav_food <- read_excel(___, ___)
+```{r read-raw-na-fixed}
+fav_food <- read_excel("data-raw/favourite-food.xlsx", na = c("N/A", "99999","five"))
 fav_food 
 ```
 
 * Convert SES (socio economic status) to a factor variables with levels in the 
 following order: `Low`, `Middle`, `High`.
 
-```{r label-me7}
-# add code here
+```{r SES-factor}
+fav_food$SES <- as.factor(fav_food$SES)
+class(fav_food$SES)
+
+fav_food <- fav_food %>% 
+  mutate(SES = fct_relevel(SES, c("Low", "Middle", "High"
+    
+  )))
+
+levels(fav_food$SES)
+fav_food
 ```
 
 * Write out the resulting data frame to `favourite-food.rds` in the `data/` folder.
 
-```{r label-me8}
-# add code here
+```{r write-rds}
+write_rds(fav_food, "data/favorite-food.rds")
 ```
 
 * Read `favourite-food.rds` back in from the `data/` folder and observe the 
 variable types. Are they as you left them?
+Yes.
 
-```{r label-me9}
-# add code here
+```{r reload}
+read_rds("data/favorite-food.rds")
 ```
 
 ## References {#references}
